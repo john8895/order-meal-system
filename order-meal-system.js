@@ -5,8 +5,8 @@
 * 1. 刪除項目按鈕
 * 2. 訂購統計
 */
-var orderUl = my$('todayOrder');
-var orderView = my$('orderView');
+var orderUl = document.getElementById('todayOrder');
+var orderView = document.getElementById('orderView');
 var prompt = document.getElementById('prompt') || 0;
 // var total = 0;
 
@@ -53,8 +53,8 @@ function updateOrderList() {
 
 }
 
-my$('btn1').onclick = function () {
-    var newData = my$('text').value;
+document.getElementById('btn1').onclick = function () {
+    var newData = document.getElementById('text').value;
     var data = localStorage.getItem(getDate()); //日期為key
     var total = 0;
     newData = newData.trim();
