@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>訂餐系統</title>
+</head>
+<body>
+<h1>訂餐系統</h1>
+<hr>
+<input type="text" id="text" value="黃雅雅/雞腿飯/100">
+<input type="button" value="設置" id="btn1">
+<input type="button" value="清除資料" id="btn2" onclick="clearLocalstorage()">
+<hr>
+<h2>【訂購項次】</h2>
+<div id="nowOrder">
+    <ul id="todayOrder"></ul>
+    <div id="prompt"></div>
+</div>
+<hr>
+<h2>【訂購統計】</h2>
+<div id="orderView">
+    <div id="totalNum">總金額：0 元</div>
+
+    <h3>總共訂購了 <span id="orderNum">8</span> 份餐點，如下：</h3>
+    <ol id="orderCountUl">
+        <li>排骨飯 x 2 ：200 元</li>
+        <li>雞腿飯 x 1 ：80 元</li>
+    </ol>
+</div>
+
+
+<script src="../js/common.js"></script>
+<script src="order-meal-system.js"></script>
+</body>
+</html>
