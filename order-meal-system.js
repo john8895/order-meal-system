@@ -4,8 +4,8 @@
 * -------------------
 * *. 可拖放上傳店家菜單
 * *. 資料寫入 Google Sheets
-* *. 收錢狀態
 * *. input按enter可送出
+* *. 計算已收錢筆數，未收筆數，已收金額，未收金額
 */
 var orderUl = document.getElementById('todayOrder');
 // var orderView = document.getElementById('orderView');
