@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="file-uploader" data-target="file-uploader" accept="image/*" multiple="multiple"/>
+<script>
+    var fileUploader = document.querySelector('#file-uploader');
+    fileUploader.addEventListener('change',(e) => {
+        console.log(e.target.files[0]);
+        let form = new FormData();
+        form.append("product[photos][]", e.target.files[0])
+        console.log(form);
+
+    })
+
+
+</script>
+</body>
+</html>

@@ -2,33 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13ea2771-9e1b-4180-a01c-5849f9e4a29b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/order-meal-system.js" beforeDir="false" afterPath="$PROJECT_DIR$/order-meal-system.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chinese-western-years-map-new.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chinese-western-years-map.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/google-sheets-api.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gotop.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gregorian-transform.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/table.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload file.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploadFile-test1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1aKrmQhYN9nBIljiBbsnQEAoEB3" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Github\order-meal-system" />
       <recent name="D:\github\order-meal-system" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\github\order-meal-system" />
     </key>
   </component>
@@ -43,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1586495284065</updated>
       <workItem from="1586495285255" duration="900000" />
-      <workItem from="1586533274279" duration="17693000" />
+      <workItem from="1586533274279" duration="45096000" />
     </task>
     <servers />
   </component>

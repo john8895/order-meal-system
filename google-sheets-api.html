@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="">
+    <input type="text" value="" id="input">
+    <input type="button" value="送出" id="btn">
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+<script>
+    let sendButton = document.querySelector('#btn');
+
+    function send() {
+        let input = document.querySelector('#input').value;
+        // let phone = document.querySelector('#phoneValue').value;
+        // let demand = document.querySelector('#demandValue').value;
+        $.ajax({
+            url: "https://script.google.com/macros/s/AKfycbxo9SDGOkfYZYq_5nsQQXsSy9gQxueUpL0g_40Rgd_hV1fPXWV3/exec",
+            data: {
+                "input": input
+            },
+            success: function(response) {
+                if(response == "成功"){
+                    alert("成功");
+
+                }
+            },
+        });
+    };
+
+    sendButton.addEventListener('click', send);
+
+
+
+</script>
+</body>
+</html>
