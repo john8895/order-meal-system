@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13ea2771-9e1b-4180-a01c-5849f9e4a29b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/scss/_mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/scss/style.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-meal-system.js" beforeDir="false" afterPath="$PROJECT_DIR$/order-meal-system.js" afterDir="false" />
-    </list>
+    <list default="true" id="13ea2771-9e1b-4180-a01c-5849f9e4a29b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +59,7 @@
       <updated>1586495284065</updated>
       <workItem from="1586495285255" duration="900000" />
       <workItem from="1586533274279" duration="45096000" />
-      <workItem from="1586818246522" duration="10711000" />
+      <workItem from="1586818246522" duration="11033000" />
     </task>
     <servers />
   </component>
