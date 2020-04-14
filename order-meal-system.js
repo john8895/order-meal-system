@@ -7,9 +7,8 @@
 * *. input按enter可送出
 * *. 計算已收錢筆數，未收筆數，已收金額，未收金額
 */
-var orderUl = document.getElementById('todayOrder');
-// var orderView = document.getElementById('orderView');
-var prompt = document.getElementById('prompt') || 0;
+let orderUl = document.getElementById('todayOrder');
+let prompt = document.getElementById('prompt') || 0;
 
 
 //自訂函數：使用複數 setAttribute
@@ -26,7 +25,7 @@ updateOrderList();
 
 function updateOrderList() {
     //取出資料
-    var data = localStorage.getItem(getDate());
+    let data = localStorage.getItem(getDate());
     data = data ? JSON.parse(data) : [];
 
     //先清空DOM元素
@@ -37,30 +36,34 @@ function updateOrderList() {
         var total = 0;
 
         //輸出至畫面
-        for (var i = 0; i < data.length; i++) {
-            var list = document.createElement('li');
-            var aObj = document.createElement('a');
+        for (let i = 0; i < data.length; i++) {
+            let list = document.createElement('li');
+            let aObj = document.createElement('a');
 
-            var paymentCk = document.createElement('input'); //創建收款與否checkbox
+            let paymentCk = document.createElement('input'); //創建收款與否checkbox
             setAttributes(paymentCk, {
                 'type': 'checkbox',
-                'onclick': 'orderPayment(this)'
+                'onclick': 'orderPayment(this)',
+                'id': 'orderPaymentCk-' + i
             });
             paymentCk.checked = data[i].payment;
 
             setAttributes(list, {
                 'data-num': i,
-                'data-payment': data[i].payment
+                'data-payment': data[i].payment,
+                'class': data[i].payment ? 'paid' : ''
             });
             setAttributes(aObj, {
                 'href': '#',
                 'id': 'delItem',
-                'onclick': 'delOrderItem(this)'
+                'onclick': 'delOrderItem(this)',
+                'class': 'delBtn btn btn-sm btn-outline-danger'
             });
-            aObj.innerText = '刪除';
-            list.innerText = `${data[i].name} / ${data[i].type} / ${data[i].price} 元`;
+            // aObj.innerText = '刪除';
+            list.innerHTML = `<label for="orderPaymentCk-${i}">${data[i].name} / ${data[i].type} / ${data[i].price} 元</label>`;
             list.appendChild(aObj);
             list.appendChild(paymentCk);
+
 
             orderUl.appendChild(list);
             total += parseInt(data[i].price);
@@ -78,31 +81,38 @@ function updateOrderList() {
 * 新增項目
 * -------------------
 */
-document.getElementById('orderAdd').onclick = function () {
-    var newData = document.getElementById('text').value;
-    var data = localStorage.getItem(getDate()); //日期為key
-    var total = 0;
-    //處理字串
-    newData = newData.trim(); // 去除文字前後空白
-    newData = newData.split('/'); // 以 / 拆分字串
+const orderAddBtn = document.getElementById('orderAdd');
+const orderInput = document.getElementById('orderInput');
+orderAddBtn.addEventListener('click', orderAddHandle);
+orderInput.addEventListener('keyup', orderAddHandle);
 
-    //如果localstorage有資料就讀出並轉陣列，無則給空陣列
-    data = data ? JSON.parse(data) : [];
+function orderAddHandle(event) {
+    if(event.keyCode===13 || event.type==="click"){
+        let newData = document.getElementById('orderInput');
+        let data = localStorage.getItem(getDate()); //日期為key
+        //處理字串
+        newData = newData.value.trim().split('/'); // 去除文字前後空白，以 / 拆分字串
 
-    //input資料組物件
-    var order = {
-        name: newData[0],
-        type: newData[1],
-        price: newData[2],
-        payment: false
-    };
-    data.push(order); //插入新資料至原資料中
+        //如果localstorage有資料就讀出並轉陣列，無則給空陣列
+        data = data ? JSON.parse(data) : [];
 
-    //儲存至localStorage
-    localStorage.setItem(getDate(), JSON.stringify(data));
+        //input資料組物件
+        let order = {
+            name: newData[0],
+            type: newData[1],
+            price: newData[2],
+            payment: false
+        };
+        data.push(order); //插入新資料至原資料中
 
-    //輸出至畫面
-    updateOrderList();
+        //儲存至localStorage
+        localStorage.setItem(getDate(), JSON.stringify(data));
+
+        //輸出至畫面
+        updateOrderList();
+    }
+
+
 };
 
 /*
@@ -115,6 +125,8 @@ function delOrderItem(thisItem) {
     var delNum = thisItem.parentElement.getAttribute('data-num');
     var data = localStorage.getItem(getDate()); //日期為key
 
+    var r = confirm("刪除不能復原，你確定嗎？");
+    if (!r) return;
     //如果localstorage有資料就讀出並轉陣列，無則給空陣列
     data = data ? JSON.parse(data) : [];
     data.splice(delNum, 1); // 刪除項目
@@ -134,14 +146,17 @@ function delOrderItem(thisItem) {
 * -------------------
 */
 function orderPayment(thisItem) {
-    var data = localStorage.getItem(getDate()); //日期為key
-    var paymentLi = thisItem.parentNode;
+    let data = localStorage.getItem(getDate()); //日期為key
+    let paymentLi = thisItem.parentNode;
 
     //如果localstorage有資料就讀出並轉陣列，無則給空陣列
     data = data ? JSON.parse(data) : [];
 
     //自訂屬性紀錄點選狀態，供存取資料取用
     paymentLi.setAttribute('data-payment', thisItem.checked); //toggle payment status
+
+    paymentLi.setAttribute('class', thisItem.checked ? 'paid' : '')
+
 
     var listObj = document.getElementById('todayOrder').children;
 
@@ -153,7 +168,7 @@ function orderPayment(thisItem) {
         // tempItem = tempItem !== 'false'; //string to boolean
 
         //判斷如果資料庫取出的值是字串，就轉成 boolean
-        tempItem = typeof tempItem === 'string' ? tempItem !=='false' : tempItem;
+        tempItem = typeof tempItem === 'string' ? tempItem !== 'false' : tempItem;
 
         // 如果 payment 值與資料庫不同，表示有更新
         if (tempItem !== data[i].payment) {
@@ -202,7 +217,6 @@ function orderCount(total) {
             liObj.innerText = key + " x " + counts[key];
             orderCountUl.appendChild(liObj)
             orderNum += counts[key]
-            // console.log(key + " x " + counts[key]);
         });
         orderNumShow.innerText = orderNum;
     }
@@ -217,9 +231,10 @@ function orderCount(total) {
 * -------------------
 */
 function clearLocalstorage() {
+    let r=confirm("刪除資料不能復原，你確定嗎？");
+    if(!r) return;
     localStorage.clear();
     updateOrderList();
-    // orderCount();
 }
 
 /*
@@ -234,5 +249,4 @@ function getDate() {
     var todayDate = today.getDate()
     todayDate = todayDate < 10 ? "0" + todayDate : todayDate;
     return today.getFullYear() + "" + todayMonth + "" + todayDate
-    // console.log(today.getFullYear() + "" + todayMonth + "" + todayDate);
 }

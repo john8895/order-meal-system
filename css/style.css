@@ -1,0 +1,95 @@
+@charset "UTF-8";
+.orderSystem-wrap {
+  font-family: "Microsoft JhengHei";
+}
+.orderSystem-wrap .title {
+  font-size: 18px;
+}
+.orderSystem-wrap .prompt {
+  font-size: 12px;
+  margin-left: 15px;
+}
+.orderSystem-wrap .head-title {
+  font-size: 30px;
+  text-align: center;
+  margin: 40px 0 30px;
+}
+.orderSystem-wrap .body-row {
+  display: flex;
+  justify-content: center;
+}
+.orderSystem-wrap .orderInput {
+  letter-spacing: 1px;
+}
+.orderSystem-wrap .todayOrder {
+  list-style-type: none;
+  padding-left: 20px;
+}
+.orderSystem-wrap .todayOrder li {
+  padding: 5px 20px;
+  border-radius: 5px;
+}
+.orderSystem-wrap .todayOrder li:hover {
+  background-color: #ebf2fa;
+}
+.orderSystem-wrap .todayOrder li:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "";
+  margin-right: 10px;
+  color: #007bff;
+}
+.orderSystem-wrap .todayOrder li label {
+  cursor: pointer;
+  margin: 0;
+}
+.orderSystem-wrap .todayOrder li input[type=checkbox] {
+  display: none;
+}
+.orderSystem-wrap .todayOrder li.paid label {
+  padding: 0 8px;
+  background-color: #efefef;
+}
+.orderSystem-wrap .delBtn {
+  margin-left: 15px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  line-height: 27px;
+  font-size: 13px;
+  padding: 0;
+  text-align: center;
+  border: 0;
+}
+.orderSystem-wrap .delBtn:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "";
+  vertical-align: text-top;
+}
+.orderSystem-wrap .paid:after {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: " 已付款";
+  position: relative;
+  margin-left: 14px;
+  padding: 6px 9px;
+  background-color: cornflowerblue;
+  color: #fff;
+  border-radius: 14px;
+  font-size: 12px;
+}
+
+/*# sourceMappingURL=style.css.map */
