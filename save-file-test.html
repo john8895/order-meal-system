@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+* -------------------
+* 儲存資料
+* -------------------
+*/
+    // saveHandle.call()
+    // function saveHandle(){
+    //     let data = {
+    //         name:"hanmeimei",
+    //         age:88
+    //     }
+    //     let content = JSON.stringify(data);
+    //     let blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+    //     saveAs(blob, "save.json");
+    // }
+
+    readFile()
+    function readFile() {
+        console.log('e');
+        let file = 'data.json';
+        let fReader = new FileReader();
+        fReader.onload = function (event) {
+            // document.getElementById('fileContent').value = event.target.result;
+            console.log(event.target.result);
+        };
+        // fReader.readAsText(file);
+    }
+</script>
+</body>
+</html>

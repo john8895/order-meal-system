@@ -18,6 +18,44 @@ function setAttributes(element, attrs) {
 
 /*
 * -------------------
+* 儲存資料
+* -------------------
+*/
+// function saveHandle(data){
+//     let data = {
+//         name:"hanmeimei",
+//         age:88
+//     }
+//     var content = JSON.stringify(data);
+//     var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+//     saveAs(blob, "save.json");
+// }
+
+/*
+* -------------------
+* 上傳菜單
+* -------------------
+*/
+(function uploadImage() {
+    let file = document.getElementById('uploadFile');
+    let imgView = document.getElementById('imageView');
+    file.addEventListener('change', function () {
+        let reader = new FileReader();
+        if (file.files.length > 0) {
+            reader.readAsDataURL(file.files[0])
+        } else {
+            imgView.innerText = "";
+        }
+        reader.addEventListener('load',function (e) {
+            imgView.innerHTML = `<img src="${this.result}">`;
+            //this.result  是圖片編碼的URL
+        })
+    })
+})();
+
+
+/*
+* -------------------
 * 更新訂購列表
 * -------------------
 */
@@ -87,7 +125,7 @@ orderAddBtn.addEventListener('click', orderAddHandle);
 orderInput.addEventListener('keyup', orderAddHandle);
 
 function orderAddHandle(event) {
-    if(event.keyCode===13 || event.type==="click"){
+    if (event.keyCode === 13 || event.type === "click") {
         let newData = document.getElementById('orderInput');
         let data = localStorage.getItem(getDate()); //日期為key
         //處理字串
@@ -231,8 +269,8 @@ function orderCount(total) {
 * -------------------
 */
 function clearLocalstorage() {
-    let r=confirm("刪除資料不能復原，你確定嗎？");
-    if(!r) return;
+    let r = confirm("刪除資料不能復原，你確定嗎？");
+    if (!r) return;
     localStorage.clear();
     updateOrderList();
 }
