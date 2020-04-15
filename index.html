@@ -2,29 +2,52 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>訂餐系統 Order Meal System</title>
+    <title>訂便當系統 Order Meal System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h1>訂餐系統</h1>
-<hr>
-<input type="text" id="text" value="黃雅雅/雞腿飯/100">
-<input type="button" value="新增訂單" id="orderAdd">
-<input type="button" value="清除資料" id="btn2" onclick="clearLocalstorage()">
-<hr>
-<h2>【訂購項次】</h2>
-<div id="nowOrder">
-    <ul id="todayOrder"></ul>
-    <div id="prompt"></div>
-</div>
-<hr>
-<h2>【訂購統計】</h2>
-<div id="orderView">
-    <div id="totalNum">總金額：0 元</div>
+<div class="orderSystem-wrap">
+    <div class="container">
+        <div class="row body-row">
+            <div class="col-sm-7">
+                <h1 class="head-title">訂便當系統</h1>
+                <hr>
+                <div class="form-group">
+                <input type="text" id="orderInput" value="" class="orderInput form-control  mb-2 mr-sm-2"
+                       placeholder="輸入範例： 陳政翰 / 雞腿飯 / 100" >
+                <input type="button" value="新增訂單" id="orderAdd" class="btn btn-sm btn-primary">
+                    <em class="prompt">備註：文字請以 / 分隔、價格只寫數字、酸辣湯跟酸痛湯算不同的餐點</em>
 
-    <h3>總共訂購了 <span id="orderNum">0</span> 份餐點</h3>
-    <ol id="orderCountUl">
-    </ol>
+                </div>
+                <hr>
+
+                <h2 class="title">【訂購項次】</h2>
+                <div id="nowOrder">
+                    <ul id="todayOrder" class="todayOrder"></ul>
+                    <div id="prompt"></div>
+                </div>
+                <hr>
+                <h2 class="title">【訂購統計】</h2>
+                <div id="orderView">
+                    <div id="totalNum">總金額：0 元</div>
+                    <p>總共訂購了 <span id="orderNum">0</span> 份餐點</p>
+                    <ol id="orderCountUl">
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <input type="button" value="清除所有資料" onclick="clearLocalstorage()" class="btn btn-sm btn-danger">
+        </div>
+    </div>
+</footer>
 <script src="order-meal-system.js"></script>
 </body>
 </html>

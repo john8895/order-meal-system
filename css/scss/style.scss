@@ -1,0 +1,96 @@
+@import "mixins";
+.orderSystem-wrap {
+    font-family: "Microsoft JhengHei";
+
+    .title {
+        font-size: 18px;
+    }
+    .prompt {
+        font-size: 12px;
+        margin-left: 15px;
+    }
+    .head-title {
+        font-size: 30px;
+        text-align: center;
+        margin: 40px 0 30px;
+    }
+
+    .body-row {
+        display: flex;
+        justify-content: center;
+    }
+    .orderInput {
+        //letter-spacing: 1px;
+    }
+
+    .todayOrder {
+        list-style-type: none;
+        padding-left: 20px;
+
+        li {
+            padding: 5px 20px;
+            border-radius: 5px;
+            //cursor: pointer;
+
+            &:hover {
+                background-color: #ebf2fa;
+            }
+            &:before {
+                @include fontAwesomeFont;
+                content: '\f101';
+                margin-right: 10px;
+                color: #007bff;
+            }
+            a {
+
+            }
+            label {
+                cursor: pointer;
+                margin: 0;
+            }
+            input[type=checkbox] {
+                display: none;
+            }
+            &.paid label {
+                padding: 0 8px;
+                background-color: #efefef;
+                //text-decoration: line-through;
+            }
+        }
+    }
+
+    .delBtn {
+        margin-left: 15px;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        line-height: 27px;
+        font-size: 13px;
+        padding: 0;
+        text-align: center;
+        border: 0;
+
+        &:before {
+            @include fontAwesomeFont;
+            content: "\f00d";
+            vertical-align: text-top;
+        }
+    }
+
+    .paid {
+        //color: #5a5a5a;
+        &:after {
+            @include fontAwesomeFont;
+            content: '\f155  已付款';
+            //border: 1px solid #999;
+            position: relative;
+            margin-left: 14px;
+            padding: 6px 9px;
+            background-color: cornflowerblue;
+            color: #fff;
+            border-radius: 14px;
+            font-size: 12px;
+        }
+
+    }
+}
