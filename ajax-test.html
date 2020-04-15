@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // var xhr = new XMLHttpRequest();
+    // xhr.addEventListener("load", getJsonData)
+    // xhr.open("get", "data.json");
+    // xhr.send();
+    //
+    //
+    // function getJsonData() {
+    //     console.log(this.responseText);
+    // }
+
+</script>
+<script>
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", "data.json");
+    xhr.send();
+    xhr.onload =function () {
+        if (xhr.readyState === 4 ) {
+            console.log(this.responseText);
+
+        }
+    }
+
+
+</script>
+</body>
+</html>

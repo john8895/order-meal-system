@@ -46,10 +46,26 @@ function setAttributes(element, attrs) {
         } else {
             imgView.innerText = "";
         }
-        reader.addEventListener('load',function (e) {
+        let newImgData = reader.addEventListener('load', function (e) {
+            //在畫面顯示出來
             imgView.innerHTML = `<img src="${this.result}">`;
+            return this.result;
             //this.result  是圖片編碼的URL
-        })
+        });
+
+        let data = localStorage.getItem(getDate() + "-img"); //日期為key
+
+        //如果localstorage有資料就讀出並轉陣列，無則給空陣列
+        data = data ? JSON.parse(data) : [];
+
+        //資料組物件
+        let newData = {
+            'img': newImgData
+        };
+        data.push(newData); //插入新資料至原資料中
+
+        //儲存至localStorage
+        localStorage.setItem(getDate() + "-img", JSON.stringify(data));
     })
 })();
 
