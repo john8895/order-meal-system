@@ -30,7 +30,6 @@ function saveHandle() {
     // var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
     // saveAs(blob, "save.json");
 
-
 }
 
 /*
@@ -41,43 +40,30 @@ function saveHandle() {
 (function uploadImage() {
     let file = document.getElementById('uploadFile');
     let imgView = document.getElementById('imageView');
+
+    //有上傳即執行
     file.addEventListener('change', function () {
+        // 宣告 FileReader
         let reader = new FileReader();
+        //如果有上傳
         if (file.files.length > 0) {
+            //轉換 base64 圖片編碼
             reader.readAsDataURL(file.files[0])
-        } else {
-            imgView.innerText = "";
         }
 
-
+        //圖片上傳完成後
         reader.addEventListener('load', function (e) {
             //在畫面顯示出來
             imgView.innerHTML = `<img src="${this.result}">`;
 
-            let result = this.result;
-            //this.result  是圖片編碼的URL
-
-
             //每次都清除資料庫，只留一張圖
             let data = [{
-                'img': result
+                'img': this.result
             }];
-
-            //資料組物件
-            // let newData = {
-            //
-            // };
-            // data.push(newData); //插入新資料至原資料中
 
             //儲存至localStorage
             localStorage.setItem(getDate() + "-img", JSON.stringify(data));
-
         });
-        // let objectURL = window.URL.createObjectURL(newImgData);
-        // console.log(objectURL);
-
-        // console.log(typeof newImgData);
-
     })
 })();
 
@@ -189,7 +175,6 @@ function orderAddHandle(event) {
         updateOrderList();
     }
 
-
 };
 
 /*
@@ -241,8 +226,6 @@ function orderPayment(thisItem) {
     for (var i = 0; i < listObj.length; i++) {
         //取得付款狀態
         var tempItem = listObj[i].getAttribute('data-payment');
-
-        // tempItem = tempItem !== 'false'; //string to boolean
 
         //判斷如果資料庫取出的值是字串，就轉成 boolean
         tempItem = typeof tempItem === 'string' ? tempItem !== 'false' : tempItem;
@@ -320,10 +303,10 @@ function clearLocalstorage() {
 * -------------------
 */
 function getDate() {
-    var today = new Date;
-    var todayMonth = today.getMonth() + 1;
+    let today = new Date;
+    let todayMonth = today.getMonth() + 1;
     todayMonth = todayMonth < 10 ? "0" + todayMonth : todayMonth;
-    var todayDate = today.getDate()
+    let todayDate = today.getDate();
     todayDate = todayDate < 10 ? "0" + todayDate : todayDate;
     return today.getFullYear() + "" + todayMonth + "" + todayDate
 }
