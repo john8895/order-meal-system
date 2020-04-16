@@ -21,15 +21,17 @@ function setAttributes(element, attrs) {
 * 儲存資料
 * -------------------
 */
-// function saveHandle(data){
-//     let data = {
-//         name:"hanmeimei",
-//         age:88
-//     }
-//     var content = JSON.stringify(data);
-//     var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
-//     saveAs(blob, "save.json");
-// }
+function saveHandle() {
+    // let data = {
+    //     name:"hanmeimei",
+    //     age:88
+    // }
+    // var content = JSON.stringify(data);
+    // var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+    // saveAs(blob, "save.json");
+
+
+}
 
 /*
 * -------------------
@@ -46,26 +48,36 @@ function setAttributes(element, attrs) {
         } else {
             imgView.innerText = "";
         }
-        let newImgData = reader.addEventListener('load', function (e) {
+
+
+        reader.addEventListener('load', function (e) {
             //在畫面顯示出來
             imgView.innerHTML = `<img src="${this.result}">`;
-            return this.result;
+
+            let result = this.result;
             //this.result  是圖片編碼的URL
+
+
+            //每次都清除資料庫，只留一張圖
+            let data = [{
+                'img': result
+            }];
+
+            //資料組物件
+            // let newData = {
+            //
+            // };
+            // data.push(newData); //插入新資料至原資料中
+
+            //儲存至localStorage
+            localStorage.setItem(getDate() + "-img", JSON.stringify(data));
+
         });
+        // let objectURL = window.URL.createObjectURL(newImgData);
+        // console.log(objectURL);
 
-        let data = localStorage.getItem(getDate() + "-img"); //日期為key
+        // console.log(typeof newImgData);
 
-        //如果localstorage有資料就讀出並轉陣列，無則給空陣列
-        data = data ? JSON.parse(data) : [];
-
-        //資料組物件
-        let newData = {
-            'img': newImgData
-        };
-        data.push(newData); //插入新資料至原資料中
-
-        //儲存至localStorage
-        localStorage.setItem(getDate() + "-img", JSON.stringify(data));
     })
 })();
 
@@ -78,8 +90,19 @@ function setAttributes(element, attrs) {
 updateOrderList();
 
 function updateOrderList() {
+    const imgView = document.getElementById('imageView');
     //取出資料
     let data = localStorage.getItem(getDate());
+    let imgData = localStorage.getItem(getDate() + "-img"); //日期為key
+
+    imgData = JSON.parse(imgData);
+
+    //讀入資料庫圖片
+    let newImg = document.createElement('img');
+    newImg.src = imgData[0].img;
+    imgView.appendChild(newImg);
+
+    //有資料讀入，否則給空
     data = data ? JSON.parse(data) : [];
 
     //先清空DOM元素
