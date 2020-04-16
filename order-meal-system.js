@@ -29,7 +29,6 @@ function saveHandle() {
     // var content = JSON.stringify(data);
     // var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
     // saveAs(blob, "save.json");
-
 }
 
 /*
@@ -79,14 +78,16 @@ function updateOrderList() {
     const imgView = document.getElementById('imageView');
     //取出資料
     let data = localStorage.getItem(getDate());
-    let imgData = localStorage.getItem(getDate() + "-img"); //日期為key
+    let imgData = localStorage.getItem(getDate() + "-img") || 0; //日期為key
 
-    imgData = JSON.parse(imgData);
+    if(imgData){
+        imgData = JSON.parse(imgData);
+        //讀入資料庫圖片
+        let newImg = document.createElement('img');
+        newImg.src = imgData[0].img;
+        imgView.appendChild(newImg);
+    }
 
-    //讀入資料庫圖片
-    let newImg = document.createElement('img');
-    newImg.src = imgData[0].img;
-    imgView.appendChild(newImg);
 
     //有資料讀入，否則給空
     data = data ? JSON.parse(data) : [];
