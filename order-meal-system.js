@@ -1,3 +1,4 @@
+'use strict';
 /*
 * -------------------
 * 待辦事項
@@ -81,6 +82,7 @@ function updateOrderList() {
     let imgData = localStorage.getItem(getDate() + "-img") || 0; //日期為key
 
     if(imgData){
+        imgView.innerHTML = ""
         imgData = JSON.parse(imgData);
         //讀入資料庫圖片
         let newImg = document.createElement('img');
