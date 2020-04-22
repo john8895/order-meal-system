@@ -2,7 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13ea2771-9e1b-4180-a01c-5849f9e4a29b" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <change afterPath="$PROJECT_DIR$/chinese-western-years-map-new.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chinese-western-years-map.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/google-sheets-api.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gotop.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gregorian-transform.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/table.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload file.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploadFile-test1.html" afterDir="false" />
+>>>>>>> aa42774827b956561c06e550960947d5bfd926a4
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+>>>>>>> 46d4d4ea0af2fd578297ffd470363ad446ea2f3e
+>>>>>>> ef3a9e08392ff06fa424f9b378ae7a4b21a88b47
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,9 +79,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586495284065</updated>
+<<<<<<< HEAD
+      <workItem from="1586495285255" duration="1590000" />
+=======
       <workItem from="1586495285255" duration="900000" />
       <workItem from="1586533274279" duration="45096000" />
+<<<<<<< HEAD
       <workItem from="1586818246522" duration="12081000" />
+=======
+<<<<<<< HEAD
+>>>>>>> aa42774827b956561c06e550960947d5bfd926a4
+=======
+      <workItem from="1586818246522" duration="11295000" />
+>>>>>>> 46d4d4ea0af2fd578297ffd470363ad446ea2f3e
+>>>>>>> ef3a9e08392ff06fa424f9b378ae7a4b21a88b47
     </task>
     <servers />
   </component>
