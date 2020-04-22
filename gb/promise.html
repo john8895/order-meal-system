@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function promise() {
+        return new Promise((resolve, reject) => {
+            // 隨機取得 0 or 1
+            const num = Math.random() > 0.5 ? 1 : 0;
+
+            // 1 則執行 resolve，否則執行 reject
+            if (num) {
+                resolve('成功');
+            }
+            reject('失敗')
+
+            // promise.then(onFulfilled, onRejected);
+// 前者為 resolve callback，後者則為 reject
+            promise()
+                .then((success) => {
+                    console.log(success);
+                }, (fail) => {
+                    console.log(fail);
+                })
+
+            // promise.then(onFulfilled);
+// promise.catch(onRejected)
+            promise()
+                .then(success => {
+                    console.log(success);
+                })
+                // 失敗的行為一律交給了 catch
+                .catch(fail => {
+                    console.log(fail);
+                });
+        });
+
+
+    }
+</script>
+</body>
+</html>

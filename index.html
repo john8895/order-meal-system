@@ -5,7 +5,7 @@
     <title>訂便當系統 Order Meal System</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stylus/main.css">
 </head>
 <body>
 <div class="orderSystem-wrap">
@@ -13,6 +13,11 @@
         <div class="row body-row">
             <div class="col-sm-7">
                 <h1 class="head-title">訂便當系統</h1>
+                <div class="form-group">
+                    <label for="uploadFile">上傳菜單</label>
+                    <input type="file" id="uploadFile">
+                    <div id="imageView"></div>
+                </div>
                 <hr>
                 <div class="form-group">
                 <input type="text" id="orderInput" value="" class="orderInput form-control  mb-2 mr-sm-2"

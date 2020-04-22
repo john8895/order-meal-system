@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-image: linear-gradient(to bottom, #ff8181 0%, #ffff81 20%, #81ff81 40%, #81ffff 60%, #8181ff 80%, #ff81ff 100%);
+            padding: 0 0 25000px;
+        }
+
+        .img {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<input type="image" src="balloon.png" class="img" id="img" onclick="balloonDown()">
+<script>
+    function balloonDown() {
+        let ball = document.getElementById('img');
+            console.log('e');
+            console.log(document.documentElement.scrollHeight);
+
+            ball.style.top = document.documentElement.scrollHeight +"px";
+    }
+
+
+</script>
+</body>
+</html>

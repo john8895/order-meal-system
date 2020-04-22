@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <h3>Blob and File Web API Example</h3>
+        <hr>
+        <div class="row">
+            <div class="column">
+                <label for="upload" class="button file-label">Select Image</label>
+                <input
+                        id="upload"
+                        class="hidden"
+                        type="file"
+                        accept="image/*"
+                />
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <img id="upload-image"/>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const uploadButton = document.getElementById('upload');
+    const imgDOM = document.getElementById('upload-image');
+
+    function createImageFromFile(img, file) {
+        return new Promise((resolve, rejfect) => {
+            img.src = URL.createObjectURL(file);
+            img.onload = () => {
+                URL.revokeObjectURL(img.src);
+                resolve(img);
+            };
+            img.onerror = () => reject('Failure to load image.');
+        });
+    }
+
+    function getFileBase64Encode(blob) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+
+            reader.readAsDataURL(blob);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+    }
+
+    function handleFiles() {
+        const fileList = this.files;
+        const [file] = fileList;
+
+        const p1 = createImageFromFile(imgDOM, file);
+        const p2 = getFileBase64Encode(file);
+
+        Promise.all([p1, p2])
+            .then(result => {
+                const [img, b64] = result;
+
+                // fixed image width, height
+                img.width = 150;
+                img.height = 150;
+
+                console.log(b64);
+            });
+    }
+
+    uploadButton.addEventListener('change', handleFiles, false);
+</script>
+</body>
+</html>

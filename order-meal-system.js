@@ -1,3 +1,4 @@
+'use strict';
 /*
 * -------------------
 * 待辦事項
@@ -18,14 +19,79 @@ function setAttributes(element, attrs) {
 
 /*
 * -------------------
+* 儲存資料
+* -------------------
+*/
+function saveHandle() {
+    // let data = {
+    //     name:"hanmeimei",
+    //     age:88
+    // }
+    // var content = JSON.stringify(data);
+    // var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+    // saveAs(blob, "save.json");
+}
+
+/*
+* -------------------
+* 上傳菜單
+* -------------------
+*/
+(function uploadImage() {
+    let file = document.getElementById('uploadFile');
+    let imgView = document.getElementById('imageView');
+
+    //有上傳即執行
+    file.addEventListener('change', function () {
+        // 宣告 FileReader
+        let reader = new FileReader();
+        //如果有上傳
+        if (file.files.length > 0) {
+            //轉換 base64 圖片編碼
+            reader.readAsDataURL(file.files[0])
+        }
+
+        //圖片上傳完成後
+        reader.addEventListener('load', function (e) {
+            //在畫面顯示出來
+            imgView.innerHTML = `<img src="${this.result}">`;
+
+            //每次都清除資料庫，只留一張圖
+            let data = [{
+                'img': this.result
+            }];
+
+            //儲存至localStorage
+            localStorage.setItem(getDate() + "-img", JSON.stringify(data));
+        });
+    })
+})();
+
+
+/*
+* -------------------
 * 更新訂購列表
 * -------------------
 */
 updateOrderList();
 
 function updateOrderList() {
+    const imgView = document.getElementById('imageView');
     //取出資料
     let data = localStorage.getItem(getDate());
+    let imgData = localStorage.getItem(getDate() + "-img") || 0; //日期為key
+
+    if(imgData){
+        imgView.innerHTML = ""
+        imgData = JSON.parse(imgData);
+        //讀入資料庫圖片
+        let newImg = document.createElement('img');
+        newImg.src = imgData[0].img;
+        imgView.appendChild(newImg);
+    }
+
+
+    //有資料讀入，否則給空
     data = data ? JSON.parse(data) : [];
 
     //先清空DOM元素
@@ -87,7 +153,7 @@ orderAddBtn.addEventListener('click', orderAddHandle);
 orderInput.addEventListener('keyup', orderAddHandle);
 
 function orderAddHandle(event) {
-    if(event.keyCode===13 || event.type==="click"){
+    if (event.keyCode === 13 || event.type === "click") {
         let newData = document.getElementById('orderInput');
         let data = localStorage.getItem(getDate()); //日期為key
         //處理字串
@@ -111,7 +177,6 @@ function orderAddHandle(event) {
         //輸出至畫面
         updateOrderList();
     }
-
 
 };
 
@@ -164,8 +229,6 @@ function orderPayment(thisItem) {
     for (var i = 0; i < listObj.length; i++) {
         //取得付款狀態
         var tempItem = listObj[i].getAttribute('data-payment');
-
-        // tempItem = tempItem !== 'false'; //string to boolean
 
         //判斷如果資料庫取出的值是字串，就轉成 boolean
         tempItem = typeof tempItem === 'string' ? tempItem !== 'false' : tempItem;
@@ -231,8 +294,8 @@ function orderCount(total) {
 * -------------------
 */
 function clearLocalstorage() {
-    let r=confirm("刪除資料不能復原，你確定嗎？");
-    if(!r) return;
+    let r = confirm("刪除資料不能復原，你確定嗎？");
+    if (!r) return;
     localStorage.clear();
     updateOrderList();
 }
@@ -243,10 +306,10 @@ function clearLocalstorage() {
 * -------------------
 */
 function getDate() {
-    var today = new Date;
-    var todayMonth = today.getMonth() + 1;
+    let today = new Date;
+    let todayMonth = today.getMonth() + 1;
     todayMonth = todayMonth < 10 ? "0" + todayMonth : todayMonth;
-    var todayDate = today.getDate()
+    let todayDate = today.getDate();
     todayDate = todayDate < 10 ? "0" + todayDate : todayDate;
     return today.getFullYear() + "" + todayMonth + "" + todayDate
 }

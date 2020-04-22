@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="file" type="file">
+<script>
+    // var eleFile = document.querySelector('#file');
+    //
+    // // 壓縮圖片需要的一些元素和對象
+    // var reader = new FileReader(), img = new Image();
+    //
+    // // 選擇的文件對象
+    // var file = null;
+    //
+    // // 縮放圖片需要的canvas
+    // var canvas = document.createElement('canvas');
+    // var context = canvas.getContext('2d');
+    //
+    //
+    // // base64地址圖片加載完畢後
+    // img.onload = function () {
+    //     // 圖片原始尺寸
+    //     var originWidth = this.width;
+    //     var originHeight = this.height;
+    //     // 最大尺寸限制
+    //     var maxWidth = 400, maxHeight = 400;
+    //     // 目標尺寸
+    //     var targetWidth = originWidth, targetHeight = originHeight;
+    //     // 圖片尺寸超過400x400的限制
+    //     if (originWidth > maxWidth || originHeight > maxHeight) {
+    //         if (originWidth / originHeight > maxWidth / maxHeight) {
+    //             // 更寬，按照寬度限定尺寸
+    //             targetWidth = maxWidth;
+    //             targetHeight = Math.round(maxWidth * (originHeight / originWidth));
+    //         } else {
+    //             targetHeight = maxHeight;
+    //             targetWidth = Math.round(maxHeight * (originWidth / originHeight));
+    //         }
+    //     }
+    //
+    //     // canvas對圖片進行縮放
+    //     canvas.width = targetWidth;
+    //     canvas.height = targetHeight;
+    //     // 清除畫布
+    //     context.clearRect(0, 0, targetWidth, targetHeight);
+    //     // 圖片壓縮
+    //     context.drawImage(img, 0, 0, targetWidth, targetHeight);
+    //
+    //     //創造blob對象，讓圖片可被緩存或保存到本地，如不指定類型默認為image/png分辨率96dpi
+    //     // canvas.toBlob(callback, type, encoderOptions);
+    //     canvas.toBlob(function (blob) {
+    //         var newImg = document.createElement("img"),
+    //             //t=創建URL對象，暫存於記憶體，速度快又不消耗後端資源
+    //             url = URL.createObjectURL(blob);
+    //
+    //         //釋放已經調用的URL對象
+    //         newImg.onload = function () {
+    //             // no longer need to read the blob so it's revoked
+    //             URL.revokeObjectURL(url);
+    //         };
+    //
+    //         newImg.src = url;
+    //         document.body.appendChild(newImg);
+    //     });
+    //
+    //
+    //     // canvas轉為blob並上傳
+    //     // canvas.toBlob(function (blob) {
+    //     //     // 圖片ajax上傳
+    //     //     var xhr = new XMLHttpRequest();
+    //     //     // 文件上傳成功
+    //     //     xhr.onreadystatechange = function () {
+    //     //         if (xhr.status == 200) {
+    //     //             // xhr.responseText就是返回的數據
+    //     //         }
+    //     //     };
+    //     //     // 開始上傳
+    //     //     xhr.open("POST", 'upload.php', true);
+    //     //     xhr.send(blob);
+    //     // }, file.type || 'image/png');
+    // };
+    //
+    // // 文件base64化，以便獲知圖片原始尺寸
+    // reader.onload = function (e) {
+    //     img.src = e.target.result;
+    // };
+    // eleFile.addEventListener('change', function (event) {
+    //     file = event.target.files[0];
+    //     // 選擇的文件是圖片
+    //     if (file.type.indexOf("image") == 0) {
+    //         reader.readAsDataURL(file);
+    //     }
+    // });
+</script>
+<script>
+    let eleFile = document.querySelector('#file');
+
+    var reader = new FileReader();
+    var img = new Image();
+    var file = null;
+
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+
+    img.onload = function () {
+        var originWidth = this.width;
+        var originHeight = this.height;
+
+        var maxWidth = 800, maxHeight = 800;
+        var targetWidth = originWidth;
+        var targetHeight = originHeight;
+
+        if (originWidth > maxWidth || originHeight > maxHeight) {
+            if (originWidth / originHeight > maxWidth / maxHeight) {
+
+                targetWidth = maxWidth;
+                targetHeight = Math.round(maxWidth * (originHeight / originWidth));
+            } else {
+                targetHeight = maxHeight;
+                targetWidth = Math.round(maxHeight * (originWidth / originHeight))
+            }
+        }
+
+        canvas.width = targetWidth;
+        canvas.height = targetHeight;
+
+        context.clearRect(0, 0, targetWidth, targetHeight);
+        context.drawImage(img, 0, 0, targetWidth, targetHeight);
+        canvas.toBlob(function (blob) {
+            var newIme = document.createElement('img');
+
+            url = URL.createObjectURL(blob);
+
+            newIme.onload = function () {
+                URL.revokeObjectURL(url);
+            }
+
+            newIme.src = url;
+            document.body.appendChild(newIme)
+        });
+
+
+    };
+
+    reader.onload = function (e) {
+        img.src = e.target.result;
+    };
+
+    //接收上傳檔案
+    eleFile.addEventListener('change', function (event) {
+        file = event.target.files[0];
+        if (file.type.indexOf("image") === 0) {
+            reader.readAsDataURL(file);
+            console.log('e');
+
+        }
+    })
+
+
+</script>
+</body>
+</html>

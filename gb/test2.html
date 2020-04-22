@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <div class="row">
+            <input
+                    id="upload"
+                    type="file"
+                    accept="image/*"
+            />
+        </div>
+        <div class="row">
+            <img id="upload-img"/>
+        </div>
+    </div>
+</div>
+<script>
+    // let url = 'https://www.google.com.tw';
+    // const data = new Blob(url);
+    // console.log(data); // Blob { size: 22, type: "" }
+
+    const uploadButton = document.getElementById('upload');
+    const imgDOM = document.getElementById('upload-img');
+
+    function createImageFromFile(img, file) {
+        return new Promise((resolve, rejfect) => {
+            img.src = URL.createObjectURL(file);
+            img.onload = () => {
+                URL.revokeObjectURL(img.src);
+                resolve(img);
+            };
+            img.onerror = () => reject('Failure to load image.');
+        });
+    }
+
+    function handleFiles() {
+        const fileList = this.files;
+        const [file] = fileList;
+
+        createImageFromFile(imgDOM, file).then(img => console.log(img));
+    }
+
+    uploadButton.addEventListener('change', handleFiles, false);
+</script>
+</body>
+</html>

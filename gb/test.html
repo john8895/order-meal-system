@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<input id="fileUploader" type="file" id="file">-->
+<!--<input type="button" value="讀取圖像" onclick="readAsDataURL()"/>-->
+<!--<input type="button" value="讀取二進制數據" onclick="readAsBinaryString()"/>-->
+<!--<input type="button" value="讀取文本文件" onclick="readAsText()"/>-->
+<!--<div>-->
+<!--    圖片預覽：-->
+<!--</div>-->
+<!--<img id="imageView" src="" style="width: 200px;">-->
+<p>
+    <label>請選擇一個文件：</label>
+    <input type="file" id="file"/>
+    <input type="button" value="讀取圖像" onclick="readAsDataURL()"/>
+    <input type="button" value="讀取二進制數據" onclick="readAsBinaryString()"/>
+    <input type="button" value="讀取文本文件" onclick="readAsText()"/>
+</p>
+<div id="result" name="result"></div>
+<script>
+    // var fileUploader = document.getElementById("fileUploader");
+    // var imageView = document.getElementById("imageView");
+    // //用來讀取file資料的FileReader
+    // var fileReader = new FileReader();
+    //
+    // //監控#fileUploader的值變化
+    // fileUploader.addEventListener("change", function(event) {
+    //     if (this.files.length > 0) {
+    //         //有選取file時，使用fileReader讀取file資料
+    //         //readAsDataURL可以將讀取到的file資料轉成
+    //         //data:......的URL型式，在讀取完後觸發load
+    //         //事件，URL存在FileReader.result中
+    //         fileReader.readAsDataURL(this.files[0]);
+    //     }else{
+    //         //沒有選取file時，例如選擇取消，
+    //         //將<img>的src設成""
+    //         imageView.src = "";
+    //     }
+    // }, false);
+    //
+    // //fileReader讀取完file資料後會觸發load事件
+    // fileReader.addEventListener("load", function(event) {
+    //     //讀取後設定<img>的src
+    //     imageView.src = this.result;
+    // }, false);
+</script>
+<script>
+    // function readAsDataURL() {
+    //
+    // }
+    // var fileUploader = document.getElementById('fileUploader');
+    // var imgView = document.getElementById('imageView');
+    //
+    // //宣告一個 FileReader 對象，把文件讀入內存，並讀取文件數據，提供非同步API
+    // var fileReader = new FileReader();
+    //
+    // //如果改變
+    // fileUploader.addEventListener('change', function (e) {
+    //     if(this.files.length>0){
+    //         //將圖片轉為base64編碼，不適合用檔案太大的圖片
+    //         fileReader.readAsDataURL(this.files[0])
+    //     }else{
+    //         //如果檔案長度小於0或按取消
+    //         imgView.src = "";
+    //     }
+    // });
+    // //FileReader讀取完file檔案後執行
+    // fileReader.addEventListener('load', function (e) {
+    //     //取出 FileReader 中的數據
+    //     imgView.src = this.result
+    // })
+
+</script>
+
+<script>
+    var result = document.getElementById("result");
+    var file = document.getElementById("file");
+
+    //判斷瀏覽器是否支持FileReader接口
+    if (typeof FileReader == 'undefined') {
+        result.InnerHTML = "<p>你的瀏覽器不支持FileReader接口！</p>";
+        //使選擇控件不可操作
+        file.setAttribute("disabled", "disabled");
+    }
+
+    // function readAsDataURL() {
+    //     //檢驗是否為圖像文件
+    //     var file = document.getElementById("file").files[0];
+    //     if (!/image\/\w+/.test(file.type)) {
+    //         alert("看清楚，這個需要圖片！");
+    //         return false;
+    //     }
+    //     var reader = new FileReader();
+    //     //將文件以Data URL形式讀入頁面
+    //     reader.readAsDataURL(file);
+    //
+    //     reader.onload = function (e) {
+    //         var result = document.getElementById("result");
+    //         //顯示文件
+    //         result.innerHTML = '<img src="' + this.result + '" alt="" />';
+    //     }
+    // }
+
+    function readAsBinaryString() {
+        var file = document.getElementById("file").files[0];
+        var reader = new FileReader();
+        //將文件以二進制形式讀入頁面
+        reader.readAsBinaryString(file);
+
+        reader.onload = function (f) {
+            var result = document.getElementById("result");
+            //顯示文件
+            result.innerHTML = this.result;
+        }
+    }
+
+    function readAsText() {
+        var file = document.getElementById("file").files[0];
+        var reader = new FileReader();
+        //將文件以文本形式讀入頁面
+        reader.readAsText(file);
+
+        reader.onload = function (f) {
+            var result = document.getElementById("result");
+            //顯示文件
+            result.innerHTML = this.result;
+        }
+    }
+
+
+    function readAsDataURL() {
+        var file = document.getElementById('file');
+
+        file = file.files[0];
+        // console.log(file.files[0]);
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+            var result = document.getElementById('result');
+            var newImg = document.createElement('img');
+            newImg.src = this.result;
+            result.appendChild(newImg);
+            // console.log(this.result);
+        }
+    }
+</script>
+</body>
+</html>
